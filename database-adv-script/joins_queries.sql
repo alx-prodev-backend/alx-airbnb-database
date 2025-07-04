@@ -57,3 +57,25 @@ NULL values will appear in the unmatched side.
 '
 
 #
+# ✅ Corrected SQL Query (with ORDER BY)
+sql
+Copy
+Edit
+SELECT
+    properties.id AS property_id,
+    properties.name AS property_name,
+    reviews.id AS review_id,
+    reviews.rating,
+    reviews.comment
+FROM
+    properties
+LEFT JOIN
+    reviews ON properties.id = reviews.property_id
+ORDER BY
+    properties.id;
+🧠 Why ORDER BY properties.id?
+Ordering by properties.id helps:
+
+Keep results grouped by property.
+
+Make it easy to see which properties have NULL reviews (i.e., no reviews).
