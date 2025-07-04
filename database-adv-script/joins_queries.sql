@@ -43,3 +43,17 @@ FROM
     users
 FULL OUTER JOIN
     bookings ON users.id = bookings.user_id;
+
+'
+🧠 Explanation: This shows:
+
+All users (even those who haven't booked anything).
+
+All bookings (even those not linked to any user).
+
+NULL values will appear in the unmatched side.
+
+⚠️ Note: Some databases like MySQL don't support FULL OUTER JOIN directly. You can simulate it with UNION:
+'
+
+#
