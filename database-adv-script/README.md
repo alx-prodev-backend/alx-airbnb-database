@@ -1,12 +1,12 @@
-# 🔗 Mastering SQL Joins
+# 🔗 Mastering SQL Joins and Subqueries
 
-This guide helps you understand and practice the different types of SQL JOINs by writing real queries and visualizing their effects using Venn diagrams and table structures.
+This guide helps you understand and practice different types of **SQL JOINs** and **subqueries**, including both correlated and non-correlated types, with real queries and visual diagrams.
 
 ---
 
 ## 📘 What Are Joins?
 
-Joins allow you to combine rows from two or more tables based on a related column between them. They are essential in relational database queries.
+Joins allow you to combine rows from two or more tables based on a related column between them. They are essential for working with relational databases.
 
 ---
 
