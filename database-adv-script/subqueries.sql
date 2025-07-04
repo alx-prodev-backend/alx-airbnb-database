@@ -52,3 +52,26 @@ WHERE
         WHERE
             b.user_id = u.id
     ) > 3;
+'
+🔍 Explanation:
+For each user in the outer query, the subquery counts how many bookings that specific user has made.
+
+It returns only users whose individual booking count is more than 3.
+'
+
+
+# Alternative using JOIN + GROUP BY
+The same logic for users with more than 3 bookings can also be done without subqueries, using GROUP BY:
+
+SELECT
+    u.id,
+    u.name,
+    u.email
+FROM
+    users u
+JOIN
+    bookings b ON u.id = b.user_id
+GROUP BY
+    u.id, u.name, u.email
+HAVING
+    COUNT(b.id) > 3;
