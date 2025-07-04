@@ -27,5 +27,28 @@ The subquery groups reviews by property_id and filters those with an average rat
 
 The outer query returns only those property details whose IDs are in the result of the subquery.
 
+'
 
 '
+✅ 2. Correlated Subquery
+➕ Find users with more than 3 bookings
+A correlated subquery depends on each row from the outer query and runs for each row.
+
+🧠 Query:
+'
+
+SELECT
+    u.id,
+    u.name,
+    u.email
+FROM
+    users u
+WHERE
+    (
+        SELECT
+            COUNT(*)
+        FROM
+            bookings b
+        WHERE
+            b.user_id = u.id
+    ) > 3;
