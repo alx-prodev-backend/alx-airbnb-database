@@ -51,3 +51,19 @@ ORDER BY
 "GROUP BY: groups by property to count bookings per property.
 
 
+"✅ Use ROW_NUMBER() to Rank Properties by Number of Bookings"
+
+
+SELECT
+    p.id AS property_id,
+    p.name AS property_name,
+    COUNT(b.id) AS total_bookings,
+    ROW_NUMBER() OVER (ORDER BY COUNT(b.id) DESC) AS booking_rank
+FROM
+    properties p
+LEFT JOIN
+    bookings b ON p.id = b.property_id
+GROUP BY
+    p.id, p.name
+ORDER BY
+    booking_rank;
