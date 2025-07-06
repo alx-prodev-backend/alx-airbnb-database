@@ -19,3 +19,9 @@ PARTITION BY RANGE (YEAR(start_date)) (
     PARTITION p2023 VALUES LESS THAN (2024),
     PARTITION pmax VALUES LESS THAN MAXVALUE
 );
+
+
+-- Insert mock or real data into partitioned table
+INSERT INTO bookings_partitioned
+SELECT id, user_id, property_id, start_date, end_date, status
+FROM bookings;
