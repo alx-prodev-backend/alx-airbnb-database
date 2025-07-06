@@ -25,3 +25,9 @@ PARTITION BY RANGE (YEAR(start_date)) (
 INSERT INTO bookings_partitioned
 SELECT id, user_id, property_id, start_date, end_date, status
 FROM bookings;
+
+-- Query to fetch bookings for 2023 (only scans partition p2023)
+EXPLAIN
+SELECT *
+FROM bookings_partitioned
+WHERE start_date BETWEEN '2023-01-01' AND '2023-12-31';
