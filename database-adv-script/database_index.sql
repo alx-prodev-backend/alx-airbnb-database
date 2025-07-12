@@ -1,7 +1,5 @@
 -- Objective: Identify and create indexes to improve query performance
--- This script includes:
--- 1. CREATE INDEX commands for high-usage columns
--- 2. EXPLAIN QUERY PLAN statements to measure performance before and after indexing
+-- Includes CREATE INDEX, EXPLAIN ANALYZE, and EXPLAIN QUERY PLAN
 
 -- ===================================
 -- Step 1: CREATE INDEX commands
@@ -26,18 +24,23 @@ CREATE INDEX idx_properties_host_id ON properties(host_id);
 -- Step 2: Measure Query Performance
 -- ===================================
 
--- BEFORE INDEXING (for documentation purposes only)
+-- BEFORE INDEXING (simulated output)
 -- EXPLAIN QUERY PLAN
 -- SELECT * FROM bookings WHERE user_id = 101 AND status = 'confirmed';
--- Output (simulated): SCAN TABLE bookings
+-- Output: SCAN TABLE bookings
 
--- AFTER INDEXING
+-- AFTER INDEXING (SQLite)
 EXPLAIN QUERY PLAN
 SELECT * FROM bookings WHERE user_id = 101 AND status = 'confirmed';
 -- Expected Output: SEARCH TABLE bookings USING INDEX idx_bookings_user_status (user_id=? AND status=?)
 
--- You can use EXPLAIN QUERY PLAN similarly for other indexed columns:
--- Example:
-EXPLAIN QUERY PLAN
+-- AFTER INDEXING (PostgreSQL/MySQL style)
+EXPLAIN ANALYZE
+SELECT * FROM bookings WHERE user_id = 101 AND status = 'confirmed';
+
+-- Test other tables too:
+EXPLAIN ANALYZE
 SELECT * FROM properties WHERE location = 'Cairo';
--- Expected Output: SEARCH TABLE properties USING INDEX idx_properties_location (location=?)
+
+EXPLAIN ANALYZE
+SELECT * FROM users WHERE email = 'user@example.com';
