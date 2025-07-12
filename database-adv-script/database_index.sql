@@ -21,3 +21,26 @@ EXPLAIN SELECT * FROM bookings WHERE user_id = 101 AND status = 'confirmed';
 
 -- JSON format for detailed analysis (for supported MySQL/MariaDB versions)
 EXPLAIN FORMAT=JSON SELECT * FROM bookings WHERE user_id = 101 AND status = 'confirmed';
+
+
+
+-- Query Used for Testing
+SELECT * FROM bookings WHERE user_id = 101 AND status = 'confirmed';
+
+
+-- EXPLAIN Output BEFORE Adding Indexes
+-- Simulated output from a database before indexing
+EXPLAIN QUERY PLAN
+SELECT * FROM bookings WHERE user_id = 101 AND status = 'confirmed';
+-- Output:
+-- SCAN TABLE bookings
+-- => Full table scan, no index used
+
+
+-- EXPLAIN Output AFTER Adding Indexes
+-- Simulated output after creating index on (user_id, status)
+EXPLAIN QUERY PLAN
+SELECT * FROM bookings WHERE user_id = 101 AND status = 'confirmed';
+-- Output:
+-- SEARCH TABLE bookings USING INDEX idx_bookings_user_status (user_id=? AND status=?)
+-- => Index used, fewer rows scanned, improved performance
